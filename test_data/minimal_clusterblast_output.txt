@@ -1,0 +1,313 @@
+ClusterBlast scores for /home/wms_joe/PVCs/other_genomes/multigene/operon_genbank/PVCcif_ATCC43949.gbk
+
+Table of genes, locations, strands and annotations of query cluster:
+PAU_01961	8	457	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAU_01962	521	1618	+	major_tail_sheath_protein	no_locus_tag
+PAU_01963	1799	3280	+	tail_sheath_protein	no_locus_tag
+PAU_01964	3334	4533	+	tail_sheath_protein	no_locus_tag
+PAU_01965	4547	5005	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAU_01966	5002	5181	+	hypothetical_protein	no_locus_tag
+PAU_01967	5168	5851	+	hypothetical_protein	no_locus_tag
+PAU_01968	5848	7449	+	Rhs_element_Vgr_protein	no_locus_tag
+PAU_01969	7462	7905	+	baseplate_wedge_subunit	no_locus_tag
+PAU_01970	7902	8318	+	hypothetical_protein	no_locus_tag
+PAU_01971	8527	11253	+	hypothetical_protein	no_locus_tag
+PAU_01972	11246	14197	+	hypothetical_protein	no_locus_tag
+PAU_01973	14333	15184	+	hypothetical_protein	no_locus_tag
+PAU_01974	15247	17145	+	hypothetical_protein	no_locus_tag
+PAU_01975	17155	19227	+	ATP-dependent_zinc_metalloprotease_FtsH	no_locus_tag
+PAU_01976	19252	20166	+	hypothetical_protein	no_locus_tag
+PAU_01977	20327	21223	+	hypothetical_protein	no_locus_tag
+PAU_01978	21308	22291	+	hypothetical_protein	no_locus_tag
+PAU_01979	22788	23684	+	hypothetical_protein	no_locus_tag
+PAU_01980	23656	24114	+	hypothetical_protein	no_locus_tag
+
+
+Significant hits:
+1. PAU_1	Photorhabdus asymbiotica strain ATCC43949.
+
+2. PAB_1	Photorhabdus asymbiotica strain Beaudesert.
+
+3. PAN_5	Photorhabdus asymbiotica strain Nepal.
+
+4. PAT_0	Photorhabdus asymbiotica strain Thai.
+
+5. PAK_0	Photorhabdus asymbiotica strain Kingscliff.
+
+
+
+Details:
+
+>>
+
+1. PAU_1
+Source: Photorhabdus asymbiotica strain ATCC43949.
+
+Number of proteins with BLAST hits to this cluster: 31
+MultiGeneBlast score: 31.7
+Cumulative Blast bit score: 64022
+
+Table of genes, locations, strands and annotations of subject cluster:
+PAU_01961	2233799	2234248	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAU_01962	2234312	2235409	+	major_tail_sheath_protein	no_locus_tag
+PAU_01963	2235590	2237071	+	tail_sheath_protein	no_locus_tag
+PAU_01964	2237125	2238324	+	tail_sheath_protein	no_locus_tag
+PAU_01965	2238338	2238796	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAU_01966	2238793	2238972	+	hypothetical_protein	no_locus_tag
+PAU_01967	2238959	2239642	+	hypothetical_protein	no_locus_tag
+PAU_01968	2239639	2241240	+	Rhs_element_Vgr_protein	no_locus_tag
+PAU_01969	2241253	2241696	+	baseplate_wedge_subunit	no_locus_tag
+PAU_01970	2241693	2242109	+	hypothetical_protein	no_locus_tag
+PAU_01971	2242318	2245044	+	hypothetical_protein	no_locus_tag
+PAU_01972	2245037	2247988	+	hypothetical_protein	no_locus_tag
+PAU_01973	2248124	2248975	+	hypothetical_protein	no_locus_tag
+PAU_01974	2249038	2250936	+	hypothetical_protein	no_locus_tag
+PAU_01976	2253043	2253957	+	hypothetical_protein	no_locus_tag
+PAU_01977	2254118	2255014	+	hypothetical_protein	no_locus_tag
+PAU_01978	2255099	2256082	+	hypothetical_protein	no_locus_tag
+PAU_01979	2256579	2257475	+	hypothetical_protein	no_locus_tag
+PAU_01980	2257447	2257905	+	hypothetical_protein	no_locus_tag
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+PAU_01961	PAU_01961	100	309	100.0	2e-108
+PAU_01962	PAU_01962	100	749	100.0	0.0
+PAU_01963	PAU_01963	100	1015	100.0	0.0
+PAU_01964	PAU_01964	100	821	100.0	0.0
+PAU_01965	PAU_01965	100	312	100.0	2e-109
+PAU_01966	PAU_01966	100	117	100.0	1e-35
+PAU_01967	PAU_01967	100	471	100.0	1e-169
+PAU_01968	PAU_01968	100	1095	100.0	0.0
+PAU_01969	PAU_01969	100	298	100.0	5e-104
+PAU_01970	PAU_01970	100	277	100.0	3e-96
+PAU_01971	PAU_01971	100	1866	100.0	0.0
+PAU_01972	PAU_01972	100	2034	100.0	0.0
+PAU_01973	PAU_01973	100	583	100.0	0.0
+PAU_01974	PAU_01974	100	1273	100.0	0.0
+PAU_01976	PAU_01976	100	614	100.0	0.0
+PAU_01977	PAU_01977	100	604	100.0	0.0
+PAU_01978	PAU_01978	100	676	100.0	0.0
+PAU_01979	PAU_01979	100	608	100.0	0.0
+PAU_01980	PAU_01980	100	300	100.0	1e-104
+
+
+
+>>
+
+2. PAB_1
+Source: Photorhabdus asymbiotica strain Beaudesert.
+
+Number of proteins with BLAST hits to this cluster: 31
+MultiGeneBlast score: 31.7
+Cumulative Blast bit score: 62512
+
+Table of genes, locations, strands and annotations of subject cluster:
+cmlA	528550	528990	+	Chloramphenicol_acetyltransferase_2	no_locus_tag
+PAB_00496	530556	531005	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAB_00497	531069	532169	+	major_tail_sheath_protein	no_locus_tag
+PAB_00498	532217	533698	+	tail_sheath_protein	no_locus_tag
+PAB_00499	533752	534951	+	tail_sheath_protein	no_locus_tag
+PAB_00500	534965	535423	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAB_00501	535420	535599	+	hypothetical_protein	no_locus_tag
+PAB_00502	535586	536269	+	hypothetical_protein	no_locus_tag
+PAB_00503	536266	537867	+	Rhs_element_Vgr_protein	no_locus_tag
+PAB_00504	537880	538323	+	baseplate_wedge_subunit	no_locus_tag
+PAB_00505	538320	538733	+	hypothetical_protein	no_locus_tag
+PAB_00506	538802	541537	+	hypothetical_protein	no_locus_tag
+PAB_00507	541530	544499	+	hypothetical_protein	no_locus_tag
+PAB_00508	544638	545486	+	hypothetical_protein	no_locus_tag
+PAB_00509	545549	547444	+	hypothetical_protein	no_locus_tag
+ftsH_1	547454	549538	+	ATP-dependent_zinc_metalloprotease_FtsH	no_locus_tag
+PAB_00511	549563	550462	+	hypothetical_protein	no_locus_tag
+PAB_00512	550627	551526	+	hypothetical_protein	no_locus_tag
+PAB_00516	554417	555034	+	hypothetical_protein	no_locus_tag
+PAB_00517	555006	555464	+	hypothetical_protein	no_locus_tag
+dsdX_1	555806	557191	-	DsdX_permease	no_locus_tag
+srlR_1	558367	559143	-	Glucitol_operon_repressor	no_locus_tag
+ygbM	559155	559934	-	Putative_hydroxypyruvate_isomerase_YgbM	no_locus_tag
+fucA_1	560079	560714	-	L-fuculose_phosphate_aldolase	no_locus_tag
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+PAU_01961	PAB_00496	99	308	100.0	5e-108
+PAU_01962	PAB_00497	91	692	100.273972603	0.0
+PAU_01963	PAB_00498	84	803	101.419878296	0.0
+PAU_01964	PAB_00499	92	770	100.0	0.0
+PAU_01965	PAB_00500	96	302	99.3421052632	2e-105
+PAU_01966	PAB_00501	98	115	100.0	6e-35
+PAU_01967	PAB_00502	95	453	100.0	2e-162
+PAU_01968	PAB_00503	94	1039	100.0	0.0
+PAU_01969	PAB_00504	93	280	100.0	1e-96
+PAU_01970	PAB_00505	89	248	100.0	2e-84
+PAU_01971	PAB_00506	84	1572	100.330396476	0.0
+PAU_01972	PAB_00507	84	1706	100.915564598	0.0
+PAU_01973	PAB_00508	72	410	100.706713781	9e-144
+PAU_01974	PAB_00509	79	992	100.316455696	0.0
+PAU_01975	ftsH_1	77	1095	100.579710145	0.0
+PAU_01976	PAB_00511	83	507	98.6842105263	0.0
+PAU_01977	PAB_00512	87	533	100.0	0.0
+PAU_01979	PAB_00516	95	396	68.7919463087	3e-139
+PAU_01980	PAB_00517	96	291	100.0	4e-101
+
+
+
+>>
+
+3. PAN_5
+Source: Photorhabdus asymbiotica strain Nepal.
+
+Number of proteins with BLAST hits to this cluster: 29
+MultiGeneBlast score: 29.2
+Cumulative Blast bit score: 61588
+
+Table of genes, locations, strands and annotations of subject cluster:
+tdiR	3118573	3119202	+	Transcriptional_regulatory_protein_TdiR	no_locus_tag
+xerD_3	3123014	3123238	-	Tyrosine_recombinase_XerD	no_locus_tag
+PAN_02769	3124026	3124475	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAN_02770	3124539	3125639	+	major_tail_sheath_protein	no_locus_tag
+PAN_02771	3125687	3127156	+	tail_sheath_protein	no_locus_tag
+PAN_02772	3127210	3128409	+	tail_sheath_protein	no_locus_tag
+PAN_02773	3128423	3128881	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAN_02774	3128878	3129057	+	hypothetical_protein	no_locus_tag
+PAN_02775	3129044	3129727	+	hypothetical_protein	no_locus_tag
+PAN_02776	3129724	3131325	+	Rhs_element_Vgr_protein	no_locus_tag
+PAN_02777	3131338	3131781	+	baseplate_wedge_subunit	no_locus_tag
+PAN_02778	3131778	3132191	+	hypothetical_protein	no_locus_tag
+PAN_02779	3132260	3134998	+	hypothetical_protein	no_locus_tag
+PAN_02780	3134991	3137954	+	hypothetical_protein	no_locus_tag
+PAN_02781	3138093	3138938	+	hypothetical_protein	no_locus_tag
+PAN_02782	3139001	3140908	+	hypothetical_protein	no_locus_tag
+PAN_02784	3143027	3143926	+	hypothetical_protein	no_locus_tag
+PAN_02785	3144090	3144989	+	hypothetical_protein	no_locus_tag
+PAN_02789	3146760	3147656	+	hypothetical_protein	no_locus_tag
+PAN_02790	3147628	3148086	+	hypothetical_protein	no_locus_tag
+hcpA_11	3148136	3148615	-	Secreted_protein_hcp	no_locus_tag
+ygbN	3148802	3150187	-	Inner_membrane_permease_YgbN	no_locus_tag
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+PAU_01961	PAN_02769	99	308	100.0	5e-108
+PAU_01962	PAN_02770	91	691	100.273972603	0.0
+PAU_01963	PAN_02771	85	810	100.60851927	0.0
+PAU_01964	PAN_02772	92	769	100.0	0.0
+PAU_01965	PAN_02773	97	305	99.3421052632	1e-106
+PAU_01966	PAN_02774	98	115	100.0	6e-35
+PAU_01967	PAN_02775	95	452	100.0	3e-162
+PAU_01968	PAN_02776	94	1040	100.0	0.0
+PAU_01969	PAN_02777	93	280	100.0	1e-96
+PAU_01970	PAN_02778	90	251	100.0	9e-86
+PAU_01971	PAN_02779	84	1571	100.660792952	0.0
+PAU_01972	PAN_02780	84	1701	100.915564598	0.0
+PAU_01973	PAN_02781	70	407	100.706713781	1e-142
+PAU_01974	PAN_02782	79	981	100.949367089	0.0
+PAU_01976	PAN_02784	82	503	98.6842105263	1e-179
+PAU_01977	PAN_02785	87	536	100.0	0.0
+PAU_01979	PAN_02789	94	572	100.0	0.0
+PAU_01980	PAN_02790	97	296	100.0	5e-103
+
+
+
+>>
+
+4. PAT_0
+Source: Photorhabdus asymbiotica strain Thai.
+
+Number of proteins with BLAST hits to this cluster: 29
+MultiGeneBlast score: 29.2
+Cumulative Blast bit score: 61577
+
+Table of genes, locations, strands and annotations of subject cluster:
+PAT_00132	127877	128326	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAT_00133	128390	129490	+	major_tail_sheath_protein	no_locus_tag
+PAT_00134	129538	131007	+	tail_sheath_protein	no_locus_tag
+PAT_00135	131061	132260	+	tail_sheath_protein	no_locus_tag
+PAT_00136	132274	132732	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAT_00137	132729	132908	+	hypothetical_protein	no_locus_tag
+PAT_00138	132895	133578	+	hypothetical_protein	no_locus_tag
+PAT_00139	133575	135176	+	Rhs_element_Vgr_protein	no_locus_tag
+PAT_00140	135189	135632	+	baseplate_wedge_subunit	no_locus_tag
+PAT_00141	135629	136042	+	hypothetical_protein	no_locus_tag
+PAT_00142	136111	138885	+	hypothetical_protein	no_locus_tag
+PAT_00143	138878	141841	+	hypothetical_protein	no_locus_tag
+PAT_00144	141980	142825	+	hypothetical_protein	no_locus_tag
+PAT_00145	142888	144795	+	hypothetical_protein	no_locus_tag
+PAT_00147	146914	147813	+	hypothetical_protein	no_locus_tag
+PAT_00148	147977	148876	+	hypothetical_protein	no_locus_tag
+PAT_00152	150647	151543	+	hypothetical_protein	no_locus_tag
+PAT_00153	151515	151973	+	hypothetical_protein	no_locus_tag
+hcpA_1	152023	152502	-	Secreted_protein_hcp	no_locus_tag
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+PAU_01961	PAT_00132	99	308	100.0	5e-108
+PAU_01962	PAT_00133	91	693	100.273972603	0.0
+PAU_01963	PAT_00134	85	810	100.60851927	0.0
+PAU_01964	PAT_00135	92	769	100.0	0.0
+PAU_01965	PAT_00136	97	305	99.3421052632	1e-106
+PAU_01966	PAT_00137	98	115	100.0	6e-35
+PAU_01967	PAT_00138	95	452	100.0	3e-162
+PAU_01968	PAT_00139	94	1039	100.0	0.0
+PAU_01969	PAT_00140	93	280	100.0	1e-96
+PAU_01970	PAT_00141	89	249	100.0	5e-85
+PAU_01971	PAT_00142	83	1568	101.982378855	0.0
+PAU_01972	PAT_00143	84	1701	100.915564598	0.0
+PAU_01973	PAT_00144	70	407	100.706713781	1e-142
+PAU_01974	PAT_00145	78	974	100.949367089	0.0
+PAU_01976	PAT_00147	82	503	98.6842105263	1e-179
+PAU_01977	PAT_00148	87	536	100.0	0.0
+PAU_01979	PAT_00152	94	572	100.0	0.0
+PAU_01980	PAT_00153	97	296	100.0	5e-103
+
+
+
+>>
+
+5. PAK_0
+Source: Photorhabdus asymbiotica strain Kingscliff.
+
+Number of proteins with BLAST hits to this cluster: 28
+MultiGeneBlast score: 28.5
+Cumulative Blast bit score: 11751
+
+Table of genes, locations, strands and annotations of subject cluster:
+cat3	1995274	1995912	+	Chloramphenicol_acetyltransferase_3	no_locus_tag
+PAK_01787	1997281	1997730	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAK_01788	1997794	1998894	+	major_tail_sheath_protein	no_locus_tag
+PAK_01789	1998942	2000423	+	tail_sheath_protein	no_locus_tag
+PAK_01790	2000477	2001676	+	tail_sheath_protein	no_locus_tag
+PAK_01791	2001690	2002148	+	T4-like_virus_tail_tube_protein_gp19	no_locus_tag
+PAK_01792	2002145	2002324	+	hypothetical_protein	no_locus_tag
+PAK_01793	2002311	2002994	+	hypothetical_protein	no_locus_tag
+PAK_01794	2002991	2004592	+	Rhs_element_Vgr_protein	no_locus_tag
+PAK_01795	2004605	2005048	+	baseplate_wedge_subunit	no_locus_tag
+PAK_01796	2005045	2005458	+	hypothetical_protein	no_locus_tag
+PAK_01797	2005527	2008172	+	hypothetical_protein	no_locus_tag
+PAK_01798	2008165	2011134	+	hypothetical_protein	no_locus_tag
+PAK_01799	2011273	2012121	+	hypothetical_protein	no_locus_tag
+PAK_01800	2012184	2014079	+	hypothetical_protein	no_locus_tag
+PAK_01802	2016198	2017097	+	hypothetical_protein	no_locus_tag
+PAK_01803	2017262	2018161	+	hypothetical_protein	no_locus_tag
+PAK_01806	2020472	2021200	+	hypothetical_protein	no_locus_tag
+PAK_01807	2021241	2021543	+	hypothetical_protein	no_locus_tag
+PAK_01808	2021827	2022444	+	hypothetical_protein	no_locus_tag
+PAK_01809	2022416	2022877	+	hypothetical_protein	no_locus_tag
+fucA_2	2027321	2027959	-	L-fuculose_phosphate_aldolase	no_locus_tag
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+PAU_01961	PAK_01787	99	308	100.0	5e-108
+PAU_01962	PAK_01788	91	692	100.273972603	0.0
+PAU_01963	PAK_01789	85	813	101.419878296	0.0
+PAU_01964	PAK_01790	92	770	100.0	0.0
+PAU_01965	PAK_01791	97	305	99.3421052632	2e-106
+PAU_01966	PAK_01792	98	115	100.0	6e-35
+PAU_01967	PAK_01793	95	453	100.0	2e-162
+PAU_01968	PAK_01794	94	1039	100.0	0.0
+PAU_01969	PAK_01795	93	280	100.0	1e-96
+PAU_01970	PAK_01796	89	248	100.0	2e-84
+PAU_01971	PAK_01797	82	1498	100.330396476	0.0
+PAU_01972	PAK_01798	84	1709	100.915564598	0.0
+PAU_01973	PAK_01799	72	410	100.706713781	9e-144
+PAU_01974	PAK_01800	79	992	100.316455696	0.0
+PAU_01976	PAK_01802	83	507	98.6842105263	0.0
+PAU_01977	PAK_01803	87	533	100.0	0.0
+PAU_01979	PAK_01808	95	396	68.7919463087	3e-139
+PAU_01979	PAK_01806	62	285	81.8791946309	4e-95
+PAU_01980	PAK_01809	95	285	100.657894737	6e-99
+PAU_01980	PAK_01807	58	113	69.0789473684	4e-32
+
