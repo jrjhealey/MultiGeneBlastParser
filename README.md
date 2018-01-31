@@ -5,8 +5,10 @@
 
 This script will convert the output of MultiGeneBlast (Medema, M. *et al* 2013) in to distinct entries for each hit, for easier downstream processing,
 
+It depends on the `pandas` module as the only non-standard module.
+This can be installed as follows:
 
-
+`$ python -m pip install pandas`
 ## Full Script Options
 
 ```
