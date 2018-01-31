@@ -9,10 +9,10 @@ import argparse
 import io
 import os
 import re
+import sys
 import traceback
 
 import pandas as pd
-import sys
 
 pd.set_option('expand_frame_repr', False)
 
@@ -21,6 +21,8 @@ __version__ = "1.0.0"
 __title__ = "MGBparser"
 __license__ = "GPLv3"
 __author_email__ = "J.R.J.Healey@warwick.ac.uk"
+
+
 
 def get_args():
     """Parse command line arguments"""
@@ -148,7 +150,6 @@ def create_sighits_class(sighits_section):
     SigHit.Columns = ["Rank", "ID", "Description"]
 
     # Store the table of loci and associated data (tab separated, removing last blank column.
-        # NB > Not sure if the right hand column is always blank. Check with additional files.
 
     # Use StringIO object to imitate a file, which means that we can use read_table and have the dtypes
     # assigned automatically (necessary for functions like min() to work correctly on integers)
@@ -168,7 +169,7 @@ def create_hit_class(hit_sublist):
 
         Attributes:
             hit_no: The rank number of the hit returned from MultiGeneBlast.
-            name: The name assigned to the hit rank.
+            hit_id: The name assigned to the hit rank.
             source: The extended description of the hit/its sequence origin.
             protein_no: The number of proteins with hits in the detected cluster.
             MGB_score: The weighted MGB score used to rank the hits with synteny etc.
@@ -205,7 +206,7 @@ def create_hit_class(hit_sublist):
             self.end_locus = end_locus
 
     # Collect hit 'metadata'
-    Hit.hit_no, Hit.hit_id = [a.lstrip(' ') for a in hit_sublist[0].split('.')] # Start from 1 to discard >> marker
+    Hit.hit_no, Hit.hit_id = [a.lstrip(' ') for a in hit_sublist[0].split('.')]
     Hit.source = hit_sublist[1].replace('Source: ', '').rstrip('.')
     Hit.protein_no = re.match('.*?([0-9]+)$', hit_sublist[2]).group(1)
     Hit.MGB_score = re.findall("\d+\.?\d*", hit_sublist[3])
@@ -215,13 +216,14 @@ def create_hit_class(hit_sublist):
     Hit.location_columns = ["Locus", "Start", "Stop", "Strand", "Annotation", "Comment"]
 
     # Find end of location table:
-    table_split = hit_sublist.index('Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):')
+    table_split = hit_sublist.index(
+        'Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):')
     end_location_table = table_split
     start_blast_table = table_split + 1
 
     Hit.location_table = pd.read_table(
         io.StringIO(u'\n'.join([row.rstrip('\t') for row in hit_sublist[6:end_location_table]])),
-                                  names=Hit.location_columns)
+                    names=Hit.location_columns)
 
     # Figure out which is the most common strand
     Hit.dominant_strand = Hit.location_table["Strand"].value_counts().idxmax()
@@ -248,7 +250,7 @@ def create_hit_class(hit_sublist):
     Hit.blast_columns = ["Query", "Subject", "PercID", "Score", "PercCoverage", "E-Value"]
     Hit.blast_table = pd.read_table(
         io.StringIO(u'\n'.join([row.rstrip('\t') for row in hit_sublist[start_blast_table:]])),
-                                  names=Hit.blast_columns)
+                    names=Hit.blast_columns)
 
     return Hit
 
@@ -256,16 +258,13 @@ def create_hit_class(hit_sublist):
 def parse_section(file, delim1, delim2):
     """Separate files in to sections according to delimiter pairs"""
 
-    regex = '{}(.*?){}'.format(delim1,delim2)
+    regex = '{}(.*?){}'.format(delim1, delim2)
     for result in re.findall(regex, file, re.S):
         # Throw away any blank lines remaining
         result = filter(None, result.split('\n'))
 
         return result
 
-def enumerate_list(list):
-    for i, line in enumerate(list):
-        print(str(i) + " -----> " + line)
 
 def main():
     """Call functions and parse results of MGB."""
@@ -275,13 +274,16 @@ def main():
         display_refs()
 
     if args.verbose: print("Opening " + args.clusterfile + " for reading...")
-    with open(args.clusterfile,'r') as cfh:
+    with open(args.clusterfile, 'r') as cfh:
         content = cfh.read()
-        if args.verbose: print("Parsing Query details section...")
+        if args.verbose:
+            print("Parsing Query details section...")
         header_section = parse_section(content, "^", "Significant hits:")
-        if args.verbose: print("Parsing Significant hit section...")
+        if args.verbose:
+            print("Parsing Significant hit section...")
         sighits_section = parse_section(content, "Significant hits:", "Details:")
-        if args.verbose: print("Parsing Hit details section...")
+        if args.verbose:
+            print("Parsing Hit details section...")
         hit_section = parse_section(content, "Details:", "\Z")
 
     # Pass to simple parsing functions as each of these sections appears once
@@ -290,7 +292,8 @@ def main():
 
     # Detailed hit section is more complicated as the section needs to
     # be broken up in to separate hits...
-    if args.verbose: print("Splitting Hit details section...")
+    if args.verbose:
+        print("Splitting Hit details section...")
     all_hit_lists = []
     sublist = []
     for line in hit_section:
@@ -301,14 +304,15 @@ def main():
             sublist.append(line)
 
     # Create classes of each of the separated hits
-    if args.verbose: print("Establishing Hit classes...")
+    if args.verbose:
+        print("Establishing Hit classes...")
     hit_classlist = []
     for entry in all_hit_lists:
         hit_classlist.append(create_hit_class(entry))
 
     # Write output files
     if args.outfile is None:
-        args.outfile  = args.clusterfile
+        args.outfile = args.clusterfile
 
     # Set up outfile filepaths
     query_outfile = os.path.join(os.path.dirname(args.clusterfile), args.outfile) + '_queryinfo.tsv'
@@ -316,7 +320,8 @@ def main():
 
     # Prepare header info
     if args.query is True:
-        if args.verbose: print("Writing query details to file: " + query_outfile)
+        if args.verbose:
+            print("Writing query details to file: " + query_outfile)
         print("Query sequence information:")
         print("===========================")
         print("Input file:" + Subject.filename)
@@ -327,22 +332,26 @@ def main():
 
     # Prepare Sighits info
     if args.sighits is True:
-        if args.verbose: print("Writing Significant hit details to file: " + sighit_outfile)
+        if args.verbose:
+            print("Writing Significant hit details to file: " + sighit_outfile)
         print("Significant Hit information:")
         print("============================")
         print(SigHits.Table.iloc[0:args.max_result])
         with open(sighit_outfile, 'w') as sfh:
             SigHits.Table.iloc[0:args.max_result].to_csv(sfh, sep='\t')
 
+    # If fewer results than specified max, modify max for enumerate to display correctly
+    if len(hit_classlist) < args.max_result:
+        args.max_result = len(hit_classlist)
+
     # Prepare Details info on a class-by-class basis
     for i, Hit_instance in enumerate(hit_classlist[0:args.max_result]):
-
         location_outfile = os.path.join(
             os.path.dirname(args.clusterfile),
-            args.outfile) + '_'+ Hit_instance.hit_id + '_locationinfo.tsv'
+            args.outfile) + '_' + Hit_instance.hit_id + '_locationinfo.tsv'
         blast_outfile = os.path.join(
             os.path.dirname(args.clusterfile),
-            args.outfile) + '_'+ Hit_instance.hit_id + '_blastinfo.tsv'
+            args.outfile) + '_' + Hit_instance.hit_id + '_blastinfo.tsv'
         coords_outfile = os.path.join(
             os.path.dirname(args.clusterfile),
             args.outfile) + '_' + Hit_instance.hit_id + '_coords.tsv'
@@ -367,13 +376,13 @@ def main():
                 Hit_instance.blast_table.to_csv(bfh, sep='\t')
 
         coordlist = [Hit_instance.hit_no,
-                       Hit_instance.hit_id,
-                       Hit_instance.start_locus,
-                       Hit_instance.end_locus,
-                       Hit_instance.operon_start,
-                       Hit_instance.operon_end,
-                       Hit_instance.dominant_strand,
-                       Hit_instance.source]
+                     Hit_instance.hit_id,
+                     Hit_instance.start_locus,
+                     Hit_instance.end_locus,
+                     Hit_instance.operon_start,
+                     Hit_instance.operon_end,
+                     Hit_instance.dominant_strand,
+                     Hit_instance.source]
         coordstring = '\t'.join(map(str, coordlist))
 
         if args.verbose:
@@ -381,6 +390,13 @@ def main():
                 Hit_instance.hit_no, Hit_instance.hit_id, coords_outfile, i+1, args.max_result))
             print("Hit coordinate information:")
             print("===========================")
+            print('\t'.join(["Hit No", "ID",
+                            "Start Locus",
+                            "End Locus",
+                            "Start Index",
+                            "End Index",
+                            "Main Strand",
+                            "Source"]))
             print(coordstring)
 
         with open(coords_outfile, 'w') as cfh:
