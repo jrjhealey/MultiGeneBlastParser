@@ -141,6 +141,7 @@ Hit location information:
 Writing Hit coordinates for: 1. PAU_1 to test_data/single_PAU_1_coords.tsv (1 of 50)
 Hit coordinate information:
 ===========================
+Hit No  ID      Start Locus     End Locus       Start Index     End Index       Main Strand     Source
 1       PAU_1   PAU_01961       PAU_01980       2233799 2257905 +       Photorhabdus asymbiotica strain ATCC43949
 ```
 
