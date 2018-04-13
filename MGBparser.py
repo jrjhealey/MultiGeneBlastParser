@@ -68,7 +68,7 @@ def get_args():
             action='store',
             help='Return results for just the top n details sections (Def: 50).')
         parser.add_argument(
-            '--clusterfile',
+            'clusterfile',
             action='store',
             default='./clusterblast_output.txt',
             help='The text file of hits output by MGB. By default this is called \'clusterblast_output.txt\'.')
