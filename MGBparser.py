@@ -17,7 +17,7 @@ import pandas as pd
 pd.set_option('expand_frame_repr', False)
 
 __author__ = "Joe R. J. Healey"
-__version__ = "1.0.0"
+__version__ = "1.2"
 __title__ = "MGBparser"
 __license__ = "GPLv3"
 __author_email__ = "J.R.J.Healey@warwick.ac.uk"
@@ -44,17 +44,17 @@ def get_args():
             '-q',
             '--query',
             action='store_true',
-            help='Output the query sequence information (and write a file).')
+            help='Output the query sequence information (and write a file). [Boolean]')
         parser.add_argument(
             '-s',
             '--sighits',
             action='store_true',
-            help='Output the table of significant hits (and write a file).')
+            help='Output the table of significant hits (and write a file). [Boolean]')
         parser.add_argument(
             '-b',
             '--blastfile',
             action='store_true',
-            help='Output the table of BLAST hits for each match (and write a file).')
+            help='Output the table of BLAST hits for each match (and write a file). [Boolean]')
         parser.add_argument(
             '-o',
             '--outfile',
@@ -66,7 +66,7 @@ def get_args():
             type=int,
             default=50,
             action='store',
-            help='Return results for just the top n details sections (Def: 50).')
+            help='Return results for just the top n details sections [Def: 50].')
         parser.add_argument(
             '--clusterfile',
             action='store',
@@ -153,8 +153,14 @@ def create_sighits_class(sighits_section):
 
     # Use StringIO object to imitate a file, which means that we can use read_table and have the dtypes
     # assigned automatically (necessary for functions like min() to work correctly on integers)
-    SigHit.Table = pd.read_table(io.StringIO(u'\n'.join([row.rstrip('.') for row in sighits_section])),
-                                 sep='\.|\t', engine='python', names=SigHit.Columns)
+    try:
+        SigHit.Table = pd.read_table(io.StringIO(u'\n'.join([row for row in sighits_section])),
+                                     sep='(?<=\d)\.\s|\t', engine='python', names=SigHit.Columns)
+    except ValueError:
+        print('''
+        An unexpected number of columns occurred after splitting the Significant hits section. This is usually"
+        caused by stray additional punctuation in the name strings.
+        ''')
 
     return SigHit
 
@@ -269,10 +275,12 @@ def parse_section(file, delim1, delim2):
 def main():
     """Call functions and parse results of MGB."""
 
+    # Display references (and exit) if requested
     args = get_args()
     if args.references:
         display_refs()
 
+    # Read in the input file and parse out the sections
     if args.verbose: print("Opening " + args.clusterfile + " for reading...")
     with open(args.clusterfile, 'r') as cfh:
         content = cfh.read()
@@ -311,12 +319,15 @@ def main():
         hit_classlist.append(create_hit_class(entry))
 
     # Write output files
+    # Get default filename same as infile basename
     if args.outfile is None:
-        args.outfile = args.clusterfile
+        args.outfile = os.path.splitext(args.clusterfile)[0]
+    if args.verbose:
+        print("No outfile stem provided, using the basename: " + args.outfile)
 
     # Set up outfile filepaths
-    query_outfile = os.path.join(os.path.dirname(args.clusterfile), args.outfile) + '_queryinfo.tsv'
-    sighit_outfile = os.path.join(os.path.dirname(args.clusterfile), args.outfile) + '_sighitinfo.tsv'
+    query_outfile = args.outfile + '_queryinfo.tsv'
+    sighit_outfile = args.outfile + '_sighitinfo.tsv'
 
     # Prepare header info
     if args.query is True:
@@ -346,15 +357,9 @@ def main():
 
     # Prepare Details info on a class-by-class basis
     for i, Hit_instance in enumerate(hit_classlist[0:args.max_result]):
-        location_outfile = os.path.join(
-            os.path.dirname(args.clusterfile),
-            args.outfile) + '_' + Hit_instance.hit_id + '_locationinfo.tsv'
-        blast_outfile = os.path.join(
-            os.path.dirname(args.clusterfile),
-            args.outfile) + '_' + Hit_instance.hit_id + '_blastinfo.tsv'
-        coords_outfile = os.path.join(
-            os.path.dirname(args.clusterfile),
-            args.outfile) + '_' + Hit_instance.hit_id + '_coords.tsv'
+        location_outfile = args.outfile + '_' + Hit_instance.hit_id + '_locationinfo.tsv'
+        blast_outfile = args.outfile + '_' + Hit_instance.hit_id + '_blastinfo.tsv'
+        coords_outfile = args.outfile + '_' + Hit_instance.hit_id + '_coords.tsv'
 
         if args.verbose:
             print("Writing Hit details for: {0}. {1} to {2} ({3} of {4})".format(
