@@ -405,7 +405,7 @@ def main():
             print(coordstring)
 
         with open(coords_outfile, 'w') as cfh:
-            cfh.write(coordstring)
+            cfh.write(coordstring + '\n')
 
 
 if __name__ == "__main__":
