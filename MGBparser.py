@@ -12,8 +12,22 @@ import re
 import sys
 import traceback
 
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    msg = """
+The pandas import failed, the module doesn't appear to be installed
+(at least in the PYTHONPATH for this python binary").
+If you have conda try running:
+ $ conda install pandas
 
+Otherwise refer to https://pandas.pydata.org/pandas-docs/stable/install.html
+for installation instructions.
+"""
+    print(msg)
+    sys.exit(1)
+
+# Display dataframes full width (no wrapping)
 pd.set_option('expand_frame_repr', False)
 
 __author__ = "Joe R. J. Healey"
@@ -72,7 +86,9 @@ def get_args():
             action='store',
             default='./clusterblast_output.txt',
             help='The text file of hits output by MGB. By default this is called \'clusterblast_output.txt\'.')
-
+        if len(sys.argv) == 1:
+            parser.print_help(sys.stderr)
+            exit(1)
     except:
         print "An exception occurred with argument parsing. Check your provided options."
         traceback.print_exc()
