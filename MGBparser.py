@@ -31,7 +31,7 @@ for installation instructions.
 pd.set_option('expand_frame_repr', False)
 
 __author__ = "Joe R. J. Healey"
-__version__ = "1.2"
+__version__ = "1.3"
 __title__ = "MGBparser"
 __license__ = "GPLv3"
 __author_email__ = "J.R.J.Healey@warwick.ac.uk"
@@ -82,7 +82,7 @@ def get_args():
             action='store',
             help='Return results for just the top n details sections [Def: 50].')
         parser.add_argument(
-            '--clusterfile',
+            'clusterfile',
             action='store',
             default='./clusterblast_output.txt',
             help='The text file of hits output by MGB. By default this is called \'clusterblast_output.txt\'.')

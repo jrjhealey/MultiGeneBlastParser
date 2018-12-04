@@ -8,14 +8,23 @@ This script will convert the output of MultiGeneBlast (Medema, M. *et al* 2013) 
 It depends on the `pandas` module as the only non-standard module.
 This can be installed as follows:
 
-`$ python -m pip install pandas`
+     $ python -m pip install pandas
+
+or
+
+     $ conda install pandas
+
 ## Full Script Options
 
 ```
 usage: MGBparser.py [-h] [-v] [-r] [-q] [-s] [-b] [-o OUTFILE] [-m MAX_RESULT]
-                    [--clusterfile CLUSTERFILE]
+                    clusterfile
 
 Parse and extract data from the output of MultiGeneBlast.
+
+positional arguments:
+  clusterfile           The text file of hits output by MGB. By default this
+                        is called 'clusterblast_output.txt'.
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -23,35 +32,32 @@ optional arguments:
   -r, --references      Display relevant references. This option cannot be
                         used with any others.
   -q, --query           Output the query sequence information (and write a
-                        file).
+                        file). [Boolean]
   -s, --sighits         Output the table of significant hits (and write a
-                        file).
+                        file). [Boolean]
   -b, --blastfile       Output the table of BLAST hits for each match (and
-                        write a file).
+                        write a file). [Boolean]
   -o OUTFILE, --outfile OUTFILE
                         Name stem for all output files (extensions are set
                         internally).
   -m MAX_RESULT, --max_result MAX_RESULT
                         Return results for just the top n details sections
-                        (Def: 50).
-  --clusterfile CLUSTERFILE
-                        The text file of hits output by MGB. By default this
-                        is called 'clusterblast_output.txt'.
+                        [Def: 50].
 ```
 
 ###### A simple invocation may look like:
 
-    python MGBparser.py --clusterfile clusterblast_output.txt --outfile myoperon
+    python MGBparser.py --clusterfile clusterblast_output.txt --outfile myclusters
 
 This would simply return as many hits as are in the input file, but will silently write files with the BLAST infomation and operon locations with the filename prefix `myoperon*`.
 
 A more comprehensive invocation might look like:
 
-    python MGBparser.py --clusterfile clusterblast_output.txt --outfile myoperon -m 10 -qsbv
+    python MGBparser.py --clusterfile clusterblast_output.txt --outfile myclusers -m 10 -qsbv
 
-Which would run the script as before, but this time only return the top 10 hits (`-m 10`), whilst 
+Which would run the script as before, but this time only return the top 10 hits (`-m 10`), whilst
 also printing and writing files with the details of the input sequence, BLAST results, operon locations,
-significant hit descriptions and would print many more status and information messages. 
+significant hit descriptions and would print many more status and information messages.
 
 Here is some example output (as generated from the `/test_data/single_clusterblast_output.txt` file):
 
@@ -94,7 +100,7 @@ Significant Hit information:
 ============================
    Rank      ID                                Description
 0     1   PAU_1  Photorhabdus asymbiotica strain ATCC43949
-Writing Hit details for: 1. PAU_1 to test_data/single_PAU_1_locationinfo.tsv (1 of 50)
+Writing Hit details for: 1. PAU_1 to test_data/single_PAU_1_locationinfo.tsv (1 of 1)
 Hit location information:
 ============================
         Locus    Start     Stop Strand                            Annotation       Comment
@@ -140,7 +146,7 @@ Hit location information:
 16  PAU_01978  2255099  2256082      +                  hypothetical_protein  no_locus_tag
 17  PAU_01979  2256579  2257475      +                  hypothetical_protein  no_locus_tag
 18  PAU_01980  2257447  2257905      +                  hypothetical_protein  no_locus_tag
-Writing Hit coordinates for: 1. PAU_1 to test_data/single_PAU_1_coords.tsv (1 of 50)
+Writing Hit coordinates for: 1. PAU_1 to test_data/single_PAU_1_coords.tsv (1 of 1)
 Hit coordinate information:
 ===========================
 Hit No  ID      Start Locus     End Locus       Start Index     End Index       Main Strand     Source
@@ -151,6 +157,6 @@ Hit No  ID      Start Locus     End Locus       Start Index     End Index       
 
 MultiGeneBlast has been previously published here:
 
-> Medema MH, Takano E, Breitling R. 
+> Medema MH, Takano E, Breitling R.
 > "Detecting Sequence Homology at the Gene Cluster Level with MultiGeneBlast."
 > Molecular Biology and Evolution. 2013;30(5):1218-1223. doi:10.1093/molbev/mst025.
