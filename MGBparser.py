@@ -4,6 +4,16 @@ MultiGeneBlast. This script will produce a table of
 starts and ends, that can be used with the genbank slicer
 script to subset operons for each resulting hit.
 """
+# TODO:
+#  - Refactor so that the functions calling classes are no longer required
+#    (instead, just define better init functions).
+#  - Refactor classes etc to separate files
+#  - Refactor where possible to provide generators/iterators as memory usage
+#  - is probably currently kinda high (also run profiler to see)
+#  - Include genome name (optionally?) in the location file
+#  - Insert more type checking/catches etc.
+#  - Consider a 'verbose' function
+
 
 import argparse
 import io
@@ -34,63 +44,41 @@ __author__ = "Joe R. J. Healey"
 __version__ = "1.3"
 __title__ = "MGBparser"
 __license__ = "GPLv3"
-__author_email__ = "J.R.J.Healey@warwick.ac.uk"
-
+__doc__ = "A parser for the output of MultiGeneBlast"
+__author_email__ = "jrj.healey@gmail.com"
 
 
 def get_args():
     """Parse command line arguments"""
+    desc = "Parse and extract data from the output of MultiGeneBlast."
+    epi = ("The output of MultiGeneBlast is quite verbose, and not easy to parse on the "
+           "commandline. This script will break up that file and provide separate files "
+           "for each hit that is retrieved in a tabular and easier to manipulate format.")
 
     try:
-        parser = argparse.ArgumentParser(
-            description='Parse and extract data from the output of MultiGeneBlast.')
-        parser.add_argument(
-            '-v',
-            '--verbose',
-            action='store_true',
-            help='Verbose behaviour, printing parameters of the script.')
-        parser.add_argument(
-            '-r',
-            '--references',
-            action='store_true',
-            help='Display relevant references. This option cannot be used with any others.')
-        parser.add_argument(
-            '-q',
-            '--query',
-            action='store_true',
-            help='Output the query sequence information (and write a file). [Boolean]')
-        parser.add_argument(
-            '-s',
-            '--sighits',
-            action='store_true',
-            help='Output the table of significant hits (and write a file). [Boolean]')
-        parser.add_argument(
-            '-b',
-            '--blastfile',
-            action='store_true',
-            help='Output the table of BLAST hits for each match (and write a file). [Boolean]')
-        parser.add_argument(
-            '-o',
-            '--outfile',
-            action='store',
-            help='Name stem for all output files (extensions are set internally).')
-        parser.add_argument(
-            '-m',
-            '--max_result',
-            type=int,
-            default=50,
-            action='store',
-            help='Return results for just the top n details sections [Def: 50].')
-        parser.add_argument(
-            'clusterfile',
-            action='store',
-            default='./clusterblast_output.txt',
-            help='The text file of hits output by MGB. By default this is called \'clusterblast_output.txt\'.')
+        parser = argparse.ArgumentParser(description=desc, epilog=epi, prog="MGBparser.py")
+        parser.add_argument('-v', '--verbose', action='store_true',
+                            help='Verbose behaviour, printing additional output.')
+        parser.add_argument('-r', '--references', action='store_true',
+                            help='Display relevant references. This option cannot be used with any others.')
+        parser.add_argument('-q', '--query', action='store_true',
+                            help='Output the query sequence information (and write a file). [Boolean]')
+        parser.add_argument('-s', '--sighits', action='store_true',
+                            help='Output the table of significant hits (and write a file). [Boolean]')
+        parser.add_argument('-b', '--blastfile', action='store_true',
+                            help='Output the table of BLAST hits for each match (and write a file). [Boolean]')
+        parser.add_argument('-o', '--outfile', action='store',
+                            help='Name stem for all output files (extensions are set internally).')
+        parser.add_argument('-m', '--max_result', type=int, default=50, action='store',
+                            help='Return results for just the top n details sections [Def: 50].')
+        parser.add_argument('clusterfile', action='store', default='./clusterblast_output.txt',
+                            help='The text file of hits output by MGB.'
+                                 'By default this is called \'clusterblast_output.txt\'.')
         if len(sys.argv) == 1:
             parser.print_help(sys.stderr)
             exit(1)
-    except:
-        print "An exception occurred with argument parsing. Check your provided options."
+    except NameError:
+        sys.stderr.write("An exception occurred with argument parsing. Check your provided options.")
         traceback.print_exc()
 
     return parser.parse_args()
@@ -119,9 +107,9 @@ def create_header_class(header_section):
         re-parse as part of the MGB_hit class for every new hit.
 
         Attributes:
-            Filename: The input file provided to MGB originally (line 1 of output)
-            Table: The tab separated list of features
-            Columns: The column names from the section passed to
+            filename: The input file provided to MGB originally (line 1 of output)
+            table: The tab separated list of features
+            columns: The column names from the section passed to
         """
 
         def __init__(self, filename, table, columns):
@@ -159,8 +147,8 @@ def create_sighits_class(sighits_section):
             Table: Table of significant hits in rank order
         """
 
-        def __init__(self, Table):
-            self.Table = Table
+        def __init__(self, table):
+            self.Table = table
 
     # Define the column headers for the section since the file's are too verbose and ambiguous
     SigHit.Columns = ["Rank", "ID", "Description"]
@@ -173,7 +161,7 @@ def create_sighits_class(sighits_section):
         SigHit.Table = pd.read_table(io.StringIO(u'\n'.join([row for row in sighits_section])),
                                      sep='(?<=\d)\.\s|\t', engine='python', names=SigHit.Columns)
     except ValueError:
-        print('''
+        sys.stderr.write('''
         An unexpected number of columns occurred after splitting the Significant hits section. This is usually"
         caused by stray additional punctuation in the name strings.
         ''')
@@ -230,7 +218,7 @@ def create_hit_class(hit_sublist):
     # Collect hit 'metadata'
     Hit.hit_no, Hit.hit_id = [a.lstrip(' ') for a in hit_sublist[0].split('.')]
     Hit.source = hit_sublist[1].replace('Source: ', '').rstrip('.')
-    Hit.protein_no = re.match('.*?([0-9]+)$', hit_sublist[2]).group(1)
+    Hit.protein_no = re.match(".*?([0-9]+)$", hit_sublist[2]).group(1)
     Hit.MGB_score = re.findall("\d+\.?\d*", hit_sublist[3])
     Hit.cubit_score = re.findall("\d+\.?\d*", hit_sublist[4])
 
@@ -412,12 +400,12 @@ def main():
             print("Hit coordinate information:")
             print("===========================")
             print('\t'.join(["Hit No", "ID",
-                            "Start Locus",
-                            "End Locus",
-                            "Start Index",
-                            "End Index",
-                            "Main Strand",
-                            "Source"]))
+                             "Start Locus",
+                             "End Locus",
+                             "Start Index",
+                             "End Index",
+                             "Main Strand",
+                             "Source"]))
             print(coordstring)
 
         with open(coords_outfile, 'w') as cfh:
