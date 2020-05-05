@@ -45,19 +45,26 @@ optional arguments:
                         [Def: 50].
 ```
 
+### N.B. Python2 _only_ at the present time. Pull requests to port to Py3 are welcome.
+
 ###### A simple invocation may look like:
 
-    python MGBparser.py --clusterfile clusterblast_output.txt --outfile myclusters
+    python MGBparser.py --outfile myclusters clusterblast_output.txt
 
 This would simply return as many hits as are in the input file, but will silently write files with the BLAST infomation and operon locations with the filename prefix `myoperon*`.
+Note, the input file is a _positional_ argument, and must come last. Note also that the output file is a _name stem_, and not the full filename. Output files will be created where the input file originated.
+
 
 A more comprehensive invocation might look like:
 
-    python MGBparser.py --clusterfile clusterblast_output.txt --outfile myclusers -m 10 -qsbv
+    python MGBparser.py  --outfile myclusers -m 10 -qsbv clusterblast_output.txt
 
 Which would run the script as before, but this time only return the top 10 hits (`-m 10`), whilst
 also printing and writing files with the details of the input sequence, BLAST results, operon locations,
 significant hit descriptions and would print many more status and information messages.
+
+
+## Output
 
 Here is some example output (as generated from the `/test_data/single_clusterblast_output.txt` file):
 
